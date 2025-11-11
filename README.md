@@ -1,4 +1,4 @@
-# Sales Data Warehouse Implementation and Customer-Product Reporting on Microsoft Fabric using SQL & Data Factory
+# Sales Data Warehouse Implementation and Customer-Product Reporting in Microsoft Fabric using SQL & Data Factory
 
 ## Table of Contents
 
