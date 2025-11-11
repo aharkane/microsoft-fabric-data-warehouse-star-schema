@@ -1,3 +1,55 @@
+# 1. Project Overview
+
+### Business Problem
+As our business grows, we need a structured way to store, process, and analyze sales data. Currently, we lack a centralized data solution, making it difficult to track key business metrics, optimize performance, and generate insightful reports.
+
+### Solution
+We need a **data warehouse** that integrates with **Microsoft Fabric** and allows us to:  
+- Ingest sales data from external sources  
+- Organize and structure data efficiently using dimensional modeling  
+- Ensure fast and accurate reporting on sales performance  
+- Provide clear visibility into customer behavior, product performance, and revenue trends  
+
+### Implementation Summary
+
+#### Data Lakehouse Setup
+1. Created workspace: `sales_ws`  
+2. Created lakehouse: `sales_dlh` for raw data storage  
+3. Uploaded `sales.csv` and created staging table: `sales_stg`  
+
+#### Data Warehouse Setup
+1. Created data warehouse: `sales_dwh`  
+2. Created dedicated schema: `sales_schema`  
+3. Built star schema with dimension and fact tables  
+4. Implemented stored procedure for automated ETL  
+5. Executed analytical queries and created visualizations  
+
+---
+
+# 2. Architecture
+
+```text
+┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│             │     │                  │     │                  │
+│  sales.csv  │────>│  Lakehouse       │────>│  Data Warehouse  │
+│             │     │  (sales_dlh)     │     │  (sales_dwh)     │
+└─────────────┘     │                  │     │                  │
+                    │  ┌─────────────┐ │     │  ┌────────────┐  │
+                    │  │ sales_stg   │ │     │  │ Dim_       │  │
+                    │  │ (staging)   │ │     │  │ Customer   │  │
+                    │  └─────────────┘ │     │  └────────────┘  │
+                    │                  │     │                  │
+                    └──────────────────┘     │  ┌────────────┐  │
+                                             │  │ Dim_Item   │  │
+                                             │  └────────────┘  │
+                                             │                  │
+                                             │  ┌────────────┐  │
+                                             │  │ Fact_Sales │  │
+                                             │  └────────────┘  │
+                                             └──────────────────┘
+
+```
+
 # Microsoft Fabric Sales Data Warehouse
 
 Dimensional data warehouse on Microsoft Fabric with star schema design and automated ETL processes.
